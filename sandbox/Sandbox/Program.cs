@@ -3,69 +3,39 @@ using System.Globalization;
 
 class Program
 {
-    static String[][] board = [
-        [" ", " ", " "],
-        [" ", "X", " "],
-        [" ", " ", "O"]
-        ];
-    static void Main(string[] args)
-    {
-        //showBoard();
-        Console.WriteLine(convertTemp(212.0, "F", "C"));
-        Console.WriteLine(convertTemp(212.0, "F", "K"));
-        Console.WriteLine(convertTemp(100.0, "C", "F"));
-        Console.WriteLine(convertTemp(100.0, "C", "K"));
-        Console.WriteLine(convertTemp(100.0, "F", "K"));
-        Console.WriteLine(convertTemp(70.0, "F", "F"));
-        Console.WriteLine(convertTemp(70.0, "F", "C"));
-        Console.WriteLine(convertTemp(-40.0, "F", "C"));
-    }
 
-    static void showBoard()
+    static string TitleCase(string input)
     {
-        String line = "";
-        Console.WriteLine("-------");
-        for (int i = 0; i < board.Length; i++)
+        input = input.ToLower();
+        List<int> spaces = [-1];
+        List<string> chars = new();
+        foreach (char item in input)
         {
-            line = "|";
-            for(int j = 0; j < board[i].Length; j++)
+            chars.Add(item.ToString());
+        }
+        for (int i = 0; i < input.Length - 1; i++)
+        {
+            if(input[i] == ' ')
             {
-                line += board[i][j];
-                line += "|";
+                spaces.Add(i);
             }
-            Console.WriteLine(line);
-            line = "-------";
-            Console.WriteLine(line);
         }
+        foreach(int item in spaces)
+        {
+            chars[item+1] = chars[item+1].ToUpper();
+        }
+        string output = "";
+        foreach (string item in chars)
+        {
+            output += item;
+        }
+        return output;
     }
 
-    static double convertTemp(double input, String inputUnit, String outputUnit)
+    static void Main(String[] args)
     {
-        Console.Write($"Converting {input}°{inputUnit} to °{outputUnit}: ");
-        if (inputUnit == outputUnit){return input;}
-        switch (inputUnit)
-        {
-            case "F": //Farenheit
-                input -= 32;
-                input /= 1.8;
-                break;
-            case "K": //Kelvin
-                input -= 273.15;
-                break;
-            default:
-                break;
-        }
-        switch (outputUnit){
-            case "K":
-                input += 273.15;
-                break;
-            case "F":
-                input *= 1.8;
-                input += 32;
-                break;
-            default:
-                break;
-        }
-        return Math.Round(input, 2);
+       Console.WriteLine($"{TitleCase("hello world")}");
     }
+
+
 }

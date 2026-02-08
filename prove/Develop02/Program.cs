@@ -1,7 +1,7 @@
 class Program
 {
     static bool running = true;
-    static readonly PromptGen p = new();
+    static readonly PromptGen p = new("prompts.txt");
     static Journal j = new();
 
     static void ShowMenu()
@@ -10,7 +10,7 @@ class Program
         {
             int choice = int.Parse(
                 Utils.GenericPrompt(
-                    "--------------------------------\nMenu Options:\n\t1. Write a new journal entry\n\t2. Display current journal entires\n\t3. Save current journal to a file\n\t4. Load journal entires from a file\n\t5. Exit program"
+                    "--------------------------------\nMenu Options:\n\t1. Write a new journal entry\n\t2. Display current journal entires\n\t3. Save current journal to a file\n\t4. Load journal entires from a file\n\t5. Load prompt generator from a file\n\t6. Exit program"
                 )
             );
             switch (choice)
@@ -27,7 +27,7 @@ class Program
                         prompt = "Journal Entry: ";
                     }
                     string response = Utils.GenericPrompt(prompt);
-                    j.AddEntry(new Entry(prompt + response));
+                    j.AddEntry(new Entry(prompt+response));
                     Console.WriteLine("Entry added to journal.");
                     break;
                 case 2:
@@ -63,6 +63,10 @@ class Program
                     
                     break;
                 case 5:
+                    p.ClearPrompts();
+                    p.ReadPrompts(Utils.GenericPrompt("Enter the filename you would like to read from."));
+                    break;
+                case 6:
                     if (j.GetEntries().Count > 0)
                     {
                         if (

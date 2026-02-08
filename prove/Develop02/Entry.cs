@@ -1,9 +1,7 @@
-using System.Diagnostics.CodeAnalysis;
-
 public class Entry
 {
-    public string entryText;
-    public DateTime entryTime;
+    private string entryText;
+    private readonly DateTime entryTime;
 
     public Entry()
     {
@@ -20,8 +18,7 @@ public class Entry
     public Entry(string text, string time)
     {
         entryText = text;
-        DateTime dt;
-        if(DateTime.TryParse(time, out dt))
+        if (DateTime.TryParse(time, out DateTime dt))
         {
             entryTime = dt;
         }
@@ -40,19 +37,11 @@ public class Entry
 
     public override string ToString()
     {
-        return $"{entryTime}:\n{entryText}";
+        return $"{entryTime}\n{entryText}";
     }
 
     public void Display()
     {
-        Console.WriteLine($"{entryTime}:\n{entryText}");
-    }
-
-    public void WriteToFile(string fileName)
-    {
-        using (StreamWriter file = new StreamWriter(fileName))
-        {
-            file.WriteLine($"{entryTime}:\n{entryText}");
-        }
+        Console.WriteLine(ToString());
     }
 }

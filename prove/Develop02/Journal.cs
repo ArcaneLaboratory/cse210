@@ -1,45 +1,45 @@
 public class Journal
 {
-    private List<Entry> entries;
+    private List<Entry> _entries;
 
     public Journal()
     {
-        entries = new();
+        _entries = new();
     }
 
     public Journal(Entry e)
     {
-        entries = [e];
+        _entries = [e];
     }
 
     public Journal(Entry[] ae)
     {
         for (int i = 0; i < ae.Length; i++)
         {
-            entries.Add(ae[i]);
+            _entries.Add(ae[i]);
         }
     }
 
     public Journal(List<Entry> le)
     {
-        entries = le;
+        _entries = le;
     }
 
     public List<Entry> GetEntries()
     {
-        return entries;
+        return _entries;
     }
 
     public void AddEntry(Entry e)
     {
-        entries.Add(e);
+        _entries.Add(e);
     }
 
     public void AddEntries(Entry[] ae)
     {
         for (int i = 0; i < ae.Length; i++)
         {
-            entries.Add(ae[i]);
+            _entries.Add(ae[i]);
         }
     }
 
@@ -47,14 +47,14 @@ public class Journal
     {
         foreach (Entry e in le)
         {
-            entries.Add(e);
+            _entries.Add(e);
         }
     }
 
     public void Display()
     {
-        if(entries.Count > 0){
-        foreach (Entry e in entries)
+        if(_entries.Count > 0){
+        foreach (Entry e in _entries)
         {
             e.Display();
         }
@@ -68,7 +68,7 @@ public class Journal
     public void WriteToFile(string fileName, bool append = true)
     {
         using StreamWriter file = new(fileName, append);
-        foreach (Entry e in entries)
+        foreach (Entry e in _entries)
         {
             file.WriteLine(e.ToString());
         }

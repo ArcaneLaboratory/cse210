@@ -1,43 +1,43 @@
 public class Entry
 {
-    private string entryText;
-    private readonly DateTime entryTime;
+    private string _entryText;
+    private readonly DateTime _entryTime;
 
     public Entry()
     {
-        entryText = "|";
-        entryTime = DateTime.Now;
+        _entryText = "|";
+        _entryTime = DateTime.Now;
     }
 
     public Entry(string text)
     {
-        entryText = text;
-        entryTime = DateTime.Now;
+        _entryText = text;
+        _entryTime = DateTime.Now;
     }
 
     public Entry(string text, string time)
     {
-        entryText = text;
+        _entryText = text;
         if (DateTime.TryParse(time, out DateTime dt))
         {
-            entryTime = dt;
+            _entryTime = dt;
         }
         else
         {
-            entryTime = DateTime.Now;
+            _entryTime = DateTime.Now;
             Console.WriteLine($"Warning: unable to parse {time} into a DateTime object, reverting to current time");
         }
     }
 
     public Entry(string text, DateTime time)
     {
-        entryText = text;
-        entryTime = time;
+        _entryText = text;
+        _entryTime = time;
     }
 
     public override string ToString()
     {
-        return $"{entryTime}\n{entryText}";
+        return $"{_entryTime}\n{_entryText}";
     }
 
     public void Display()

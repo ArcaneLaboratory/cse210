@@ -1,12 +1,12 @@
 public class PromptGen
 {
-    private List<string> prompts = [];
+    private List<string> _prompts = [];
 
-    private readonly Random r = new();
+    private readonly Random _r = new();
 
     public PromptGen()
     {
-        prompts = [
+        _prompts = [
             "What's something unexpected that happened to you today? ",
             "What opportunities to bring joy to others did you take advantage of today? ",
             "How have you been blessed today? ",
@@ -17,7 +17,7 @@ public class PromptGen
 
     public PromptGen(List<string> l)
     {
-        prompts = l;
+        _prompts = l;
     }
 
     /// <summary>
@@ -27,36 +27,36 @@ public class PromptGen
     {
         if (overwriteFlag)
         {
-            prompts = l;
+            _prompts = l;
         }
         else
         {
-            prompts.AddRange(l);
+            _prompts.AddRange(l);
         }
     }
 
     public void AddPrompt(string s)
     {
-        prompts.Add(s);
+        _prompts.Add(s);
     }
 
     public void RemovePrompt(int index)
     {
-        prompts.RemoveAt(index);
+        _prompts.RemoveAt(index);
     }
 
     public void RemovePrompt(string s)
     {
-        prompts.Remove(s);
+        _prompts.Remove(s);
     }
 
     public void ClearPrompts()
     {
-        prompts = [];
+        _prompts = [];
     }
 
     public string GeneratePrompt()
     {
-        return prompts[r.Next(0, prompts.Count)];
+        return _prompts[_r.Next(0, _prompts.Count)];
     }
 }

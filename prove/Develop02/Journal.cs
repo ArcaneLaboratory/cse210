@@ -6,7 +6,7 @@ public class Journal
     /// <summary>
     /// The list of all <c>Entry</c> objects currently stored by the <c>Journal</c>.
     /// </summary>
-    private readonly List<Entry> _entries;
+    private List<Entry> _entries;
 
     /// <summary>
     /// Basic <c>Journal</c> constructor. Initializes <c>_entries</c> to an empty list.

@@ -1,7 +1,7 @@
 class Program
 {
     static bool running = true;
-    static readonly PromptGen p = new("prompts.txt");
+    static PromptGen p = new("prompts.txt");
     static Journal j = new();
 
     static void ShowMenu()

@@ -6,11 +6,11 @@ public class Entry
     /// <summary>
     /// The text of the <c>Entry</c>.
     /// </summary>
-    private readonly string _entryText;
+    private string _entryText;
     /// <summary>
     /// The time the <c>Entry</c> was recorded.
     /// </summary>
-    private readonly DateTime _entryTime;
+    private DateTime _entryTime;
 
     /// <summary>
     /// Default <c>Entry</c> constructor, generally should not be used. Provided for use as a fallback when necessary for error handling etc.

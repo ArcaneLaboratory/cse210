@@ -1,3 +1,10 @@
+// Additional features "exceeding core requirements":
+// - Use of constructor methods for Entry, Journal, and Prompt Generator
+// - Extensive error catching throughout, especially in file i/o and DateTime parsing
+// - Fully abstracted classes with private member variables and accessor methods
+// -Comprehensive documentation comments
+// - Option to modify prompt generation data by reading from a file
+
 class Program
 {
     static bool running = true;

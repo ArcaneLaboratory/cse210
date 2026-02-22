@@ -1,6 +1,10 @@
-using System.Diagnostics;
-using System.Numerics;
-
+// Multiple constructors provided for handling cases of multiple verses as well as non-consecutive verses
+// Currently parses verses into string as this program doesn't want to use them as anything else
+// Reads scriptures from text file or creates file to store scriptures
+// HideThreeRandomWords method will always choose three words not already hidden, slightly biasing towards words that immediately follow already hidden words
+// (This was done for simplicity in the code, more complicated solutions are possible but probably excessive for this application)
+// Option to hide words and punctuation or only words 
+// TODO: finish commenting
 class Program
 {
     static void Main(string[] args)
@@ -54,12 +58,14 @@ class Program
             }
             scriptures.Add(new Scripture(new Reference(book, chapter, verses), words));
         }
+        bool hidePunctuation = Utils.GetYNResponse("Hide punctation while memorizing?");
+        Console.Clear();
         Scripture s = scriptures[rand.Next(0, scriptures.Count)];
-        s.Display();
-        while ((!Utils.PromptOrEnter("\nPress enter to continue or type \"quit\" to finish", "quit")) && !s.HideThreeRandomWords())
+        s.Display(hidePunctuation);
+        while ((!Utils.PromptOrEnter("\nPress enter to continue or type \"quit\" to finish", "quit")) && s.HideThreeRandomWords())
         {
             Console.Clear();
-            s.Display();
+            s.Display(hidePunctuation);
         }
     }
 }

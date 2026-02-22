@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 public class Word
 {
     private string _text;
@@ -12,19 +14,25 @@ public class Word
         _text = word;
         _isHidden = false;
     }
+
     public bool GetHidden()
     {
         return _isHidden;
     }
+
     public void SetHidden(bool hidden)
     {
         _isHidden = hidden;
     }
-    public void Display()
+
+    public void Display(bool hidePunctuation)
     {
         if (_isHidden)
         {
-            Console.Write(new string('_', _text.Count()));
+            if (hidePunctuation)
+                Console.Write(new string('_', _text.Count()));
+            else
+                Console.Write(Regex.Replace(_text, "[A-Za-z0-9]", "_")); //regex matches each alphanumeric character
         }
         else
         {

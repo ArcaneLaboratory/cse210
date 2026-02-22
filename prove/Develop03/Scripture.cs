@@ -2,7 +2,6 @@ public class Scripture
 {
     private Reference _reference;
     private List<Word> _text;
-    private bool _fullyHidden = false;
 
     public Scripture(Reference refc, List<Word> words)
     {
@@ -10,15 +9,22 @@ public class Scripture
         _text = words;
     }
 
-    public void Display()
+    public void Display(bool hidePunctuation)
     {
         _reference.Display();
         foreach (Word w in _text)
         {
-            w.Display();
+            w.Display(hidePunctuation);
         }
     }
 
+    /// <summary>
+    /// Hides three psuedorandomly chosen words not already hidden.
+    /// If a word is chosen to be hidden that is already hidden, it will find the next available word to hide.
+    /// If there is no word available to hide, it will return false.
+    /// Otherwise, returns true.
+    /// </summary>
+    /// <returns>false if all words are hidden, otherwise true.</returns>
     public bool HideThreeRandomWords()
     {
         Random r = new();
@@ -33,17 +39,11 @@ public class Scripture
                 temp %= _text.Count;
                 if (temp == all)
                 {
-                    _fullyHidden = true;
-                    return true;
+                    return false;
                 }
             }
             _text[temp].SetHidden(true);
         }
-        return false;
-    }
-
-    public bool GetHidden()
-    {
-        return _fullyHidden;
+        return true;
     }
 }

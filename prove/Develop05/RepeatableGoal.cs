@@ -9,7 +9,7 @@ public class RepeatableGoal : Goal
 
     public override void Display()
     {
-        
+        Console.WriteLine($"{_name} ({_desc}): {Checkbox()} Completed {_timesCompleted} times");
     }
     public override string ToString()
     {

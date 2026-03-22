@@ -12,18 +12,25 @@ public class Goal
         _complete = complete;
     }
 
+    public string Checkbox()
+    {
+        if (_complete)
+        {
+            return "[✓]";
+        }
+        else
+        {
+            return "[ ]";
+        }
+    }
+
     public virtual void Display()
     {
-        Console.Write($"{_name}: ");
+        Console.WriteLine($"{_name} ({_desc}): {Checkbox()}");
     }
     public override string ToString()
     {
         return $"{GetType()}|{_name}|{_desc}|{_pointValue}|{_complete}";
-    }
-
-    public virtual bool IsComplete()
-    {
-        return _complete;
     }
 
     public virtual int RecordCompletion()

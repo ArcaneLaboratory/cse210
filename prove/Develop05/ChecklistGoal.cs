@@ -10,7 +10,7 @@ public class ChecklistGoal : RepeatableGoal
 
     public override void Display()
     {
-        
+        Console.WriteLine($"{_name} ({_desc}): {Checkbox()} Completed {_timesCompleted} out of {_maxCompletions} times.");
     }
     public override string ToString()
     {

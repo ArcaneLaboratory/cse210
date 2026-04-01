@@ -2,11 +2,8 @@ public class Program
 {
     static void Main(string[] args)
     {
-        using StreamWriter file = new("example.txt");
-        for(int i = 0; i < 10000000; i++)
-        {
-            file.Write("0");
-        }
-        file.Close();
+        List<int> nums = [0, 1, 2, 3, 4, 5, 6];
+        nums.RemoveRange(5, nums.Count -5);
+        Console.Write(nums.Count);
     }
 }

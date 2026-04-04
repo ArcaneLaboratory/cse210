@@ -3,10 +3,12 @@ public class HandBuilder
     // It turns out that efficiently doing this is kinda hard. Working on better options.
     // Ideally I would use a preexisting library, but I haven't been able to get one to work on my system.
     // Another option would be to generate a lookup table to quickly check any hand against...
-    public List<Card> GetBestHand(List<Card> lc)
+    public RankedHand GetBestHand(List<Card> lc)
     {
         //Console.WriteLine(lc.Count);
         lc = SortHand(lc);
+        int handrank1 = 0;
+        int handrank2 = 0;
         var temp = ContainsHighCard(lc);
         var currentBest = temp;
         temp = ContainsPair(lc);
@@ -14,6 +16,8 @@ public class HandBuilder
         {
             currentBest = temp; 
             Console.WriteLine("Found pair");
+            handrank1 += 0b1;
+            handrank2 = currentBest[0].GetValue() * 1000 + currentBest[2].GetValue()*100 + currentBest[3].GetValue()*10 + currentBest[4].GetValue();
         }
         //Console.WriteLine(lc.Count);    
         temp = ContainsTwoPair(lc);
@@ -21,6 +25,8 @@ public class HandBuilder
         {
             currentBest = temp; 
             Console.WriteLine("Found two pair");
+            handrank1 += 0b10;
+            handrank2 = currentBest[0].GetValue() * 100 + currentBest[2].GetValue() * 10 + currentBest[4].GetValue();
         } 
         //Console.WriteLine(lc.Count);
         temp = ContainsTrips(lc);
@@ -28,6 +34,8 @@ public class HandBuilder
         {
             currentBest = temp; 
             Console.WriteLine("Found trips");
+            handrank1 += 0b100;
+            handrank2 = currentBest[0].GetValue() * 100 + currentBest[3].GetValue()*10 + currentBest[4].GetValue(); 
         } 
         //Console.WriteLine(lc.Count);
         temp = ContainsStraight(lc);
@@ -35,6 +43,8 @@ public class HandBuilder
         {
             currentBest = temp; 
             Console.WriteLine("Found straight");
+            handrank1 += 0b1000;
+            handrank2 = currentBest[0].GetValue();
         } 
         //Console.WriteLine(lc.Count);
         temp = ContainsFlush(lc);
@@ -42,6 +52,8 @@ public class HandBuilder
         {
             currentBest = temp; 
             Console.WriteLine("Found flush");
+            handrank1 += 0b10000;
+            handrank2 = currentBest[0].GetValue() * 10000 + currentBest[1].GetValue()*1000 + currentBest[2].GetValue() *100 + currentBest[3].GetValue() * 10 + currentBest[4].GetValue();
         } 
         //Console.WriteLine(lc.Count);
         temp = ContainsFullHouse(lc);
@@ -49,6 +61,8 @@ public class HandBuilder
         {
             currentBest = temp; 
             Console.WriteLine("Found full house");
+            handrank1 += 0b100000;
+            handrank2 = currentBest[0].GetValue() * 100 + currentBest[2].GetValue() * 10 + currentBest[3].GetValue();
         } 
         //Console.WriteLine(lc.Count);
         temp = ContainsQuads(lc);
@@ -56,6 +70,8 @@ public class HandBuilder
         {
             currentBest = temp; 
             Console.WriteLine("Found quads");
+            handrank1 += 0b1000000;
+            handrank2 = currentBest[0].GetValue() * 10 + currentBest[4].GetValue();
         } 
         //Console.WriteLine(lc.Count);
         temp = ContainsStraightFlush(lc);
@@ -63,8 +79,12 @@ public class HandBuilder
         {
             currentBest = temp; 
             Console.WriteLine("Found straight flush");
-        } 
-        return currentBest;
+            handrank1 += 0b10000000;
+            handrank2 = currentBest[0].GetValue();
+        }
+        handrank1 *= 20000;
+        handrank1 += handrank2;
+        return new RankedHand(currentBest, handrank1);
     }
 
     // sort hand by value

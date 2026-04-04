@@ -11,7 +11,6 @@ public abstract class Player
     
     // these might end up being something other than void. not sure yet.
 
-    
     public abstract void TakeTurn();
     public abstract void Bet();
     public abstract void Call();

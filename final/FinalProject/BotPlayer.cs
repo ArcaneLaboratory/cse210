@@ -6,10 +6,8 @@ public class BotPlayer : Player
     {
         _strategy = strategy;
     }
-    public override void TakeTurn(){}
-    public override void Bet(){}
-    public override void Call(){}
-    public override void Check(){}
-    public override void Raise(){}
-    public override void Fold(){}
+    public override int[] TakeTurn(int maxCurrentBet, int myCurrentBet)
+    {
+        return [2, maxCurrentBet-myCurrentBet]; // TODO: implement bot strategies
+    }
 }

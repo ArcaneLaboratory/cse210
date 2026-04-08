@@ -15,7 +15,7 @@ public class HandBuilder
         if (temp.Count == 5)
         {
             currentBest = temp; 
-            Console.WriteLine("Found pair");
+            //Console.WriteLine("Found pair");
             handrank1 += 0b1;
             handrank2 = currentBest[0].GetValue() * 1000 + currentBest[2].GetValue()*100 + currentBest[3].GetValue()*10 + currentBest[4].GetValue();
         }
@@ -24,7 +24,7 @@ public class HandBuilder
         if (temp.Count == 5)
         {
             currentBest = temp; 
-            Console.WriteLine("Found two pair");
+            //Console.WriteLine("Found two pair");
             handrank1 += 0b10;
             handrank2 = currentBest[0].GetValue() * 100 + currentBest[2].GetValue() * 10 + currentBest[4].GetValue();
         } 
@@ -33,7 +33,7 @@ public class HandBuilder
         if (temp.Count == 5)
         {
             currentBest = temp; 
-            Console.WriteLine("Found trips");
+            //Console.WriteLine("Found trips");
             handrank1 += 0b100;
             handrank2 = currentBest[0].GetValue() * 100 + currentBest[3].GetValue()*10 + currentBest[4].GetValue(); 
         } 
@@ -42,7 +42,7 @@ public class HandBuilder
         if (temp.Count == 5)
         {
             currentBest = temp; 
-            Console.WriteLine("Found straight");
+            //Console.WriteLine("Found straight");
             handrank1 += 0b1000;
             handrank2 = currentBest[0].GetValue();
         } 
@@ -51,7 +51,7 @@ public class HandBuilder
         if (temp.Count == 5)
         {
             currentBest = temp; 
-            Console.WriteLine("Found flush");
+            //Console.WriteLine("Found flush");
             handrank1 += 0b10000;
             handrank2 = currentBest[0].GetValue() * 10000 + currentBest[1].GetValue()*1000 + currentBest[2].GetValue() *100 + currentBest[3].GetValue() * 10 + currentBest[4].GetValue();
         } 
@@ -60,7 +60,7 @@ public class HandBuilder
         if (temp.Count == 5)
         {
             currentBest = temp; 
-            Console.WriteLine("Found full house");
+            //Console.WriteLine("Found full house");
             handrank1 += 0b100000;
             handrank2 = currentBest[0].GetValue() * 100 + currentBest[2].GetValue() * 10 + currentBest[3].GetValue();
         } 
@@ -69,7 +69,7 @@ public class HandBuilder
         if (temp.Count == 5)
         {
             currentBest = temp; 
-            Console.WriteLine("Found quads");
+            //Console.WriteLine("Found quads");
             handrank1 += 0b1000000;
             handrank2 = currentBest[0].GetValue() * 10 + currentBest[4].GetValue();
         } 
@@ -78,11 +78,11 @@ public class HandBuilder
         if (temp.Count == 5)
         {
             currentBest = temp; 
-            Console.WriteLine("Found straight flush");
+            //Console.WriteLine("Found straight flush");
             handrank1 += 0b10000000;
             handrank2 = currentBest[0].GetValue();
         }
-        handrank1 *= 20000;
+        handrank1 *= 200000;
         handrank1 += handrank2;
         return new RankedHand(currentBest, handrank1);
     }

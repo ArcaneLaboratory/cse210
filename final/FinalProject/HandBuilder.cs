@@ -7,7 +7,7 @@ public class HandBuilder
     {
         //Console.WriteLine(lc.Count);
         lc = SortHand(lc);
-        int handrank1 = 0;
+        int handrank1 = 1;
         int handrank2 = 0;
         var temp = ContainsHighCard(lc);
         var currentBest = temp;
@@ -89,7 +89,7 @@ public class HandBuilder
 
     // sort hand by value
     // since this is called before evaluating potential hands, all individual hand eval methods assume an already sorted hand
-    public List<Card> SortHand(List<Card> lc)
+    public static List<Card> SortHand(List<Card> lc)
     {
         lc.Sort((o1, o2) => o2.GetValue().CompareTo(o1.GetValue()));
         return lc;

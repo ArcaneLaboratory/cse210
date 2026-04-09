@@ -2,13 +2,12 @@ public class Card
 {
     private char _suit;
     private byte _value;
-    private bool _faceUp;
+    //private bool _faceUp; // future implementation?
 
-    public Card(char s, byte v, bool f = false)
+    public Card(char s, byte v)
     {
         _suit = char.ToUpper(s);
         _value = v;
-        _faceUp = f;
     }
 
     public char GetSuit()
@@ -21,20 +20,20 @@ public class Card
         return _value;
     }
 
-    public void Hide()
-    {
-        _faceUp = false;
-    }
+    // public void Hide()
+    // {
+    //     _faceUp = false;
+    // }
 
-    public void Show()
-    {
-        _faceUp = true;
-    }
+    // public void Show()
+    // {
+    //     _faceUp = true;
+    // }
 
-    public bool IsShown()
-    {
-        return _faceUp;
-    }
+    // public bool IsShown()
+    // {
+    //     return _faceUp;
+    // }
 
     public string GetPrettyValue()
     {

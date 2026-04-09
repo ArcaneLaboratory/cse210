@@ -8,6 +8,7 @@ public class BotPlayer : Player
     }
     public override int[] TakeTurn(int maxCurrentBet, int myCurrentBet)
     {
+        Console.WriteLine($"{GetName()} calls.");
         return [2, maxCurrentBet-myCurrentBet]; // TODO: implement bot strategies
     }
 }

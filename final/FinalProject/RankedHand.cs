@@ -16,6 +16,7 @@ public class RankedHand
     }
     public void DisplayHand()
     {
+        HandBuilder.SortHand(_hand);
         foreach(Card c in _hand)
         {
             Console.Write($"{c.GetPrettyString()} ");
